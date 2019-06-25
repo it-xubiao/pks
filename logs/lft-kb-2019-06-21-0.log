@@ -1,0 +1,24 @@
+2019-06-21 15:30:40.840 [ background-preinit ] - [ DEBUG ] [ org.jboss.logging : 160 ] - Logging Provider: org.jboss.logging.Slf4jLoggerProvider found via system property
+2019-06-21 15:30:40.861 [ background-preinit ] - [ INFO  ] [ org.hibernate.validator.internal.util.Version : 30 ] - HV000001: Hibernate Validator 5.2.4.Final
+2019-06-21 15:30:40.905 [ background-preinit ] - [ DEBUG ] [ o.h.v.i.engine.resolver.DefaultTraversableResolver : 70 ] - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2019-06-21 15:30:42.622 [ main ] - [ DEBUG ] [ org.apache.ibatis.logging.LogFactory : 135 ] - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2019-06-21 15:30:42.877 [ main ] - [ DEBUG ] [ o.h.v.i.engine.resolver.DefaultTraversableResolver : 70 ] - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2019-06-21 15:30:42.880 [ main ] - [ DEBUG ] [ o.h.validator.internal.engine.ConfigurationImpl : 156 ] - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2019-06-21 15:30:42.881 [ main ] - [ DEBUG ] [ o.h.validator.internal.engine.ConfigurationImpl : 178 ] - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2019-06-21 15:30:42.883 [ main ] - [ DEBUG ] [ o.h.validator.internal.engine.ConfigurationImpl : 192 ] - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy56
+2019-06-21 15:30:42.886 [ main ] - [ DEBUG ] [ o.h.validator.internal.xml.ValidationXmlParser : 91 ] - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2019-06-21 15:30:42.888 [ main ] - [ DEBUG ] [ o.h.validator.internal.xml.ResourceLoaderHelper : 47 ] - Trying to load META-INF/validation.xml via user class loader
+2019-06-21 15:30:42.889 [ main ] - [ DEBUG ] [ o.h.validator.internal.xml.ResourceLoaderHelper : 54 ] - Trying to load META-INF/validation.xml via TCCL
+2019-06-21 15:30:42.890 [ main ] - [ DEBUG ] [ o.h.validator.internal.xml.ResourceLoaderHelper : 60 ] - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2019-06-21 15:30:42.890 [ main ] - [ DEBUG ] [ o.h.validator.internal.xml.ValidationXmlParser : 98 ] - No META-INF/validation.xml found. Using annotation based configuration only.
+2019-06-21 15:30:46.035 [ main ] - [ DEBUG ] [ org.mybatis.spring.SqlSessionFactoryBean : 496 ] - Parsed configuration file: 'class path resource [mybatis.config.xml]'
+2019-06-21 15:30:46.036 [ main ] - [ DEBUG ] [ org.mybatis.spring.SqlSessionFactoryBean : 533 ] - Property 'mapperLocations' was not specified or no matching resources found
+2019-06-21 15:30:46.511 [ main ] - [ DEBUG ] [ o.h.v.i.engine.resolver.DefaultTraversableResolver : 70 ] - Cannot find javax.persistence.Persistence on classpath. Assuming non JPA 2 environment. All properties will per default be traversable.
+2019-06-21 15:30:46.511 [ main ] - [ DEBUG ] [ o.h.validator.internal.engine.ConfigurationImpl : 156 ] - Setting custom MessageInterpolator of type org.springframework.validation.beanvalidation.LocaleContextMessageInterpolator
+2019-06-21 15:30:46.512 [ main ] - [ DEBUG ] [ o.h.validator.internal.engine.ConfigurationImpl : 178 ] - Setting custom ConstraintValidatorFactory of type org.springframework.validation.beanvalidation.SpringConstraintValidatorFactory
+2019-06-21 15:30:46.513 [ main ] - [ DEBUG ] [ o.h.validator.internal.engine.ConfigurationImpl : 192 ] - Setting custom ParameterNameProvider of type com.sun.proxy.$Proxy56
+2019-06-21 15:30:46.514 [ main ] - [ DEBUG ] [ o.h.validator.internal.xml.ValidationXmlParser : 91 ] - Trying to load META-INF/validation.xml for XML based Validator configuration.
+2019-06-21 15:30:46.514 [ main ] - [ DEBUG ] [ o.h.validator.internal.xml.ResourceLoaderHelper : 47 ] - Trying to load META-INF/validation.xml via user class loader
+2019-06-21 15:30:46.515 [ main ] - [ DEBUG ] [ o.h.validator.internal.xml.ResourceLoaderHelper : 54 ] - Trying to load META-INF/validation.xml via TCCL
+2019-06-21 15:30:46.515 [ main ] - [ DEBUG ] [ o.h.validator.internal.xml.ResourceLoaderHelper : 60 ] - Trying to load META-INF/validation.xml via Hibernate Validator's class loader
+2019-06-21 15:30:46.516 [ main ] - [ DEBUG ] [ o.h.validator.internal.xml.ValidationXmlParser : 98 ] - No META-INF/validation.xml found. Using annotation based configuration only.

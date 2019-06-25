@@ -1,0 +1,123 @@
+
+body.error {
+	background-image: url(../images/pick_bg.error.jpg);
+}
+/*alertMessage*/
+
+.alertMessage,#alertMessage
+{
+	-webkit-background-size: 40px 40px;
+	-moz-background-size: 40px 40px;
+	background-size: 40px 40px;
+	background-image: -webkit-gradient(linear, left top, right bottom,
+								color-stop(.25, rgba(255, 255, 255, .05)), color-stop(.25, transparent),
+								color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .05)),
+								color-stop(.75, rgba(255, 255, 255, .05)), color-stop(.75, transparent),
+								to(transparent));
+	background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+							transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+							transparent 75%, transparent);
+	background-image: -moz-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+							transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+							transparent 75%, transparent);
+	background-image: -ms-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+							transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+							transparent 75%, transparent);
+	background-image: -o-linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+							transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+							transparent 75%, transparent);
+	background-image: linear-gradient(135deg, rgba(255, 255, 255, .05) 25%, transparent 25%,
+							transparent 50%, rgba(255, 255, 255, .05) 50%, rgba(255, 255, 255, .05) 75%,
+							transparent 75%, transparent);
+	-moz-box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
+	-webkit-box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
+	box-shadow: inset 0 -1px 0 rgba(255,255,255,.4);
+	font-size:13px;
+	text-transform:capitalize;
+/*	font-weight:bold;*/
+	border: 1px solid!important;
+	color: #fff;
+	padding: 15px;
+	text-shadow: 0 1px 0 rgba(0,0,0,.5);
+	-webkit-animation: animate-bg 5s linear infinite;
+	-moz-animation: animate-bg 5s linear infinite;
+	margin-bottom: 10px;
+}
+#alertMessage{
+	position:fixed;
+	/*	display:none;
+	position: absolute;
+	opacity:0;
+	filter:alpha(opacity=0);*/
+	right: -90px;
+	text-transform: uppercase;
+	bottom: 35px;
+	z-index:100001;
+	cursor:pointer;
+	border: 1px solid;
+	display: none;
+	}
+
+.alertMessage.info ,#alertMessage.info 
+{
+		 border-color: #3b8eb5!important;
+	background-color:#C2E3F0;
+	color:#34667A!important;
+	text-shadow:1px 1px 1px #C8EBFB;
+}
+
+.alertMessage.error ,#alertMessage.error
+{
+	border-color: #c43d3d!important;
+	background-color:#fc4a48;
+	color:#5A0000 !important;
+	text-shadow:1px 1px 1px #E64040;
+}
+.alertMessage.warning ,#alertMessage.warning 		 
+{
+		 border-color: #d99a36 !important;
+	background-color:#fcdb72;
+	color:#987402 !important;
+	text-shadow:1px 1px 1px #e7b104;
+}
+.alertMessage.success ,#alertMessage.success 
+{
+		 background-color: #61b832;
+		 border-color: #55a12c !important;
+/*	color:#324e03 !important;*/
+	text-shadow:1px 1px 1px #5c9201;
+}
+
+.alertMessage h3
+{
+		 margin: 0  !important;
+		 border:none;
+		line-height: 25px !important;
+		color:#FFF;
+}
+
+.message p
+{
+		 margin: 0;													 
+}
+
+@-webkit-keyframes animate-bg
+{
+    from {
+        background-position: 0 0;
+    }
+    to {
+       background-position: -80px 0;
+    }
+}
+
+
+@-moz-keyframes animate-bg 
+{
+    from {
+        background-position: 0 0;
+    }
+    to {
+       background-position: -80px 0;
+    }
+}

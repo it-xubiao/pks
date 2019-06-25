@@ -1,0 +1,150 @@
+@CHARSET "UTF-8";
+*{margin:0;padding:0;border:0;}
+body{overflow-y:scroll;}
+.f_null{clear:both;width:0;height:0;line-height:0;}
+.f_cont{position:absolute;z-index:1;width:100%;height:100%;}
+
+/* 搜索框 */
+.f_search{position:fixed;z-index:10;width:260px;height:auto;right:2%;margin-top:30px;overflow:hidden;border:1px solid #2b8bff;}
+.f_search_input{float:left;width:200px;height:auto;overflow:hidden;}
+.f_search_input input{border:0;margin:0;padding:0 5px;width:200px;height:35px;line-height:35px;}
+.f_search_btn{float:left;width:60px;height:35px;cursor:pointer;background:url(../../../../assets-adminlte/images/monitor/monitor-search.jpg) no-repeat center;}
+.f_search_item{float:left;width:260px;height:30px;line-height:30px;border-top:1px solid #63B8FF;background-color:#fff;overflow:hidden;}
+.f_search_item a{display:inline-block;width:260px;height:30px;line-height:30px;color:#000;overflow:hidden;text-decoration:none;padding:0 5px;}
+.f_search_item a:hover{background-color:#63B8FF;color:#fff;}
+.f_search_hidden{width:auto;height:auto;display:none;}
+
+/* 图标切换 */
+.f_tab{position:absolute;z-index:10;width:48px;height:160px;margin-left:30px;margin-top:30px;overflow:hidden;}
+.f_tab div{float:left;width:48px;height:48px;margin-bottom:5px;overflow:hidden;}
+.f_tab div a img{border:0;width:48px;height:48px;}
+
+.f_device_child{position:absolute;z-index:10;width:140px;height:40px;margin-left:83px;margin-top:87px;overflow:hidden;display:none;}
+.f_device_child div{float:left;width:40px;height:40px;margin-right:5px;overflow:hidden;}
+.f_device_child div a img{border:0;width:40px;height:40px;}
+
+/* 图标说明 */
+#f_icon_park, #f_icon_device{position:fixed;z-index:20;bottom:60px;right:10px;width:470px;height:180px;border:1px solid #E2E2E2;display:none;overflow:hidden;}
+#f_icon_park{background:url(../../../../assets-adminlte/images/monitor/park_icon_info.jpg) no-repeat center;}
+#f_icon_device{background:url(../../../../assets-adminlte/images/monitor/device_icon_info.jpg) no-repeat center;}
+.cust_close, .cust_open{position:fixed;z-index:25;bottom:60px;right:10px;width:15px;height:15px;}
+.cust_close{background:url(../../../../assets-adminlte/images/monitor/icon_close.png) no-repeat center;display:none;}
+.cust_open{background:url(../../../../assets-adminlte/images/monitor/icon_open.png) no-repeat center;}
+
+/* 详情展示 */
+.f_detail_wrapper{position:absolute;z-index:25;text-align:center;width:100%;height:auto;display:none;}
+.f_detail_show{position:relative;width:828px;min-height:330px;_height:330px;background:#eaedee;border:1px solid #eaedee;text-align:left;margin:0 auto;
+	-webkit-box-shadow: #666 0px 0px 15px;-moz-box-shadow: #666 0px 0px 15px;box-shadow: #666 0px 0px 15px;}
+.f_btn_left{float:left;height:330px;width:40px;}
+.f_btn_right{float:right;height:330px;width:40px;background:url(../../../../assets-adminlte/images/monitor/btn_right_disable.png) no-repeat center;}
+.f_detail_head{float:left;width:748px;height:60px;margin:0;overflow:hidden;}
+.f_detail_bottom{float:left;width:748px;height:30px;text-align:center;overflow:hidden;}
+.f_detail_body{float:left;width:748px;height:240px;overflow:hidden;}
+.f_detail_ul{height:240px;}
+.f_detail_li{float:left;display:block;width:768px;height:240px;list-style-type:none;position:relative;}
+
+/********************** 停车地图详情部分  ************************/
+.f_park_head1, .f_park_head2, .f_park_head3{float:left;height:60px;overflow:hidden;}
+.f_park_head1{width:210px;}
+.f_park_head2{width:210px;}
+.f_park_head3{width:320px;}
+.f_head_word1{float:left;height:auto;width:170px;word-break:break-all;}
+.f_head_word2{float:left;height:auto;width:170px;word-break:break-all;}
+.f_head_word3{float:left;height:auto;width:280px;word-break:break-all;}
+.f_head_img1, .f_head_img2, .f_head_img3{float:left;width:30px;height:60px;margin-right:5px;}
+.f_head_img1{background:url(../../../../assets-adminlte/images/monitor/park_head_1.png) no-repeat center;}
+.f_head_img2{background:url(../../../../assets-adminlte/images/monitor/park_green.png) no-repeat center;}
+.f_head_img3{background:url(../../../../assets-adminlte/images/monitor/park_head_3.png) no-repeat center;}
+
+.f_detail_item{float:left;width:170px;height:100px;margin-right:20px;margin-bottom:30px;border:1px solid #fff;background-color:#fff;overflow:hidden;}
+.f_detail_item1{float:left;width:90px;height:100px;text-align:center;}
+.f_detail_item1 img{border:0;width:80px;height:25px;margin:20px auto;cursor:default;}
+.f_detail_item1_desc{float:left;width:90px;height:20px;line-height:20px;text-align:center;}
+.f_detail_item2{float:left;width:80px;height:80px;margin:10px 0;}
+.f_detail_item2 div{float:left;width:80px;height:20px;line-height:20px;text-align:left;font-size:10px;}
+.f_detail_item2 div img{border:0;width:15px;height:15px;margin-right:5px;}
+
+.f_detail_bottom_cont{width:100px;height:15px;margin:5px auto;overflow:hidden;}
+.f_detail_bottom_cont1, .f_detail_bottom_cont2{float:left;width:15px;height:15px;margin-right:5px;}
+.f_detail_bottom_cont1{background:url(../../../../assets-adminlte/images/monitor/bottom_circle1.png) no-repeat center;}
+.f_detail_bottom_cont2{background:url(../../../../assets-adminlte/images/monitor/bottom_circle2.png) no-repeat center;}
+
+/* 遮罩层显示详情 */
+.f_detail_alert{position:absolute;z-index:40;width:100%;height:100%;background:#000;opacity:0.5;filter:alpha(opacity=50);display:none;}
+.f_detail_alert1{position:absolute;z-index:45;width:100%;height:100%;text-align:center;display:none;}
+
+.f_detail_alert2{float:left;width:820px;height:225px;border-top:1px solid gray;display:none;overflow:hidden;}
+.f_detail_alert_close{position:absolute;width:20px;height:20px;margin-left:675px;margin-top:5px;cursor:pointer;}
+.f_detail_alert_close img{border:0;width:20px;height:20px;}
+.f_close{position:absolute;float:right;width:20px;height:20px;right:5px;top:5px;cursor:pointer;}
+.f_close img{border:0;width:20px;height:20px;}
+.f_detail_alert21{float:left;width:820px;height:175px;text-align:left;margin:auto;overflow:hidden;}
+.f_detail_alert21 img{margin:10px 0;margin-left:57px;width:160px;height:161px;border:1px solid #DDDDDD;
+	background:url(../../../../assets-adminlte/images/monitor/default_car.png) no-repeat center;background-color:#EEEEEE;overflow:hidden;cursor:default;}
+.f_detail_alert22{float:left;width:820px;height:50px;overflow:hidden;border-top:1px solid gray;}
+.f_detail_alert22 div{float:left;width:195px;height:25px;line-height:25px;text-align:left;margin-left:58px;overflow:hidden;}
+
+
+
+/********************** 设备地图详情部分 ************************/
+.f_dc_head1, .f_dc_head2, .f_dc_head3{float:left;height:60px;}
+.f_dc_head1{width:210px;margin-left:100px;}
+.f_dc_head2{width:200px;}
+.f_dc_head3{width:230px;}
+.f_dc_word1{float:left;width:170px;height:auto;word-break:break-all;}
+.f_dc_word2{float:left;width:165px;height:auto;word-break:break-all;}
+.f_dc_word3{float:left;width:195px;height:auto;word-break:break-all;}
+.f_dc_img1, .f_dc_img2, .f_dc_img3{float:left;width:30px;height:60px;margin-right:5px;}
+.f_dc_img1{background:url(../../../../assets-adminlte/images/monitor/park_head_1.png) no-repeat center;}
+.f_dc_img2{background:url(../../../../assets-adminlte/images/monitor/sensor_normal.png) no-repeat center;}
+.f_dc_img3{background:url(../../../../assets-adminlte/images/monitor/gateway_warn.png) no-repeat center;}
+.f_detail_item3{float:left;width:48px;height:80px;margin:10px 0;text-align:center;overflow:hidden;}
+.f_detail_item3 div{width:48px;height:20px;line-height:20px;text-align:center;font-size:8px;overflow:hidden;}
+.f_detail_item3 img{border:0;width:32px;height:32px;margin:5px auto;cursor:default;}
+.f_detail_item4{float:left;width:60px;height:100px;text-align:center;margin:10px 0;}
+.f_detail_item4 div{float:left;width:60px;height:20px;line-height:20px;text-align:right;font-size:8px;overflow:hidden;}
+.f_detail_item5{float:left;width:60px;height:100px;margin:10px 0;}
+.f_detail_item5 div{float:left;width:60px;height:20px;line-height:20px;text-align:left;font-size:8px;overflow:hidden;}
+
+
+/* 设备地图遮罩层 */
+.f_detail_ili{position:absolute;z-index:45;width:200px;height:170px;line-height:170px;background:#fff;border:1px solid gray;text-align:center;display:none;}
+.f_detail_ili1{width:95px;float:left;height:170px;overflow:hidden;}
+.f_detail_ili1 div{width:95px;float:left;height:28px;line-height:28px;text-align:right;}
+.f_detail_ili2{width:100px;float:right;height:170px;overflow:hidden;}
+.f_detail_ili2 div{width:100px;float:left;height:28px;line-height:28px;text-align:left;}
+
+/* 设备自定义覆盖物 */
+#f_dc_marker{position:absolute;z-index:30;width:200px;height:280px;text-align:center;background:#eaedee;display:none;overflow:hidden;
+		-webkit-box-shadow: #666 0px 0px 15px;-moz-box-shadow: #666 0px 0px 15px;box-shadow: #666 0px 0px 15px;}
+.f_dc_marker_close{position:absolute;width:20px;height:20px;margin-left:175px;margin-top:5px;cursor:pointer;}
+.f_dc_marker_close img{border:0;width:20px;height:20px;}
+.f_dc_marker1{width:120px;height:112px;line-height:112px;color:gray;text-align:center;margin:10px auto;}
+.f_dc_marker1 img{width:120px;height:112px;border:0;}
+.f_dc_marker2{width:180px;height:140px;margin:10px;}
+.f_dc_marker21{float:left;width:85px;height:140px;}
+.f_dc_marker21 div{float:left;text-align:right;width:85px;height:23px;line-height:23px;}
+.f_dc_marker22{float:right;width:90px;height:140px;}
+.f_dc_marker22 div{float:left;text-align:left;width:90px;height:23px;line-height:23px;}
+
+
+/*************************停车场点击显示详情************************/
+.f_park_wrapper{position:absolute;z-index:25;text-align:center;width:100%;height:auto;display:none;}
+.f_park_detail{position:relative;width:600px;min-height:330px;_height:330px;background:#eaedee;border:1px solid #eaedee;text-align:left;margin:0 auto;
+	-webkit-box-shadow: #666 0px 0px 15px;-moz-box-shadow: #666 0px 0px 15px;box-shadow: #666 0px 0px 15px;}
+.f_park_detail_1{float:left;margin-left:20px;width:173px;height:60px;overflow:hidden;}
+.f_park_detail_icon1, .f_park_detail_icon2, .f_park_detail_icon3, .f_park_detail_icon4{float:left;width:30px;height:60px;}
+.f_park_detail_icon1{background:url(../../../../assets-adminlte/images/monitor/park_head_1.png) no-repeat center;}
+.f_park_detail_icon2{background:url(../../../../assets-adminlte/images/monitor/park_green.png) no-repeat center;} 
+.f_park_detail_icon3{background:url(../../../../assets-adminlte/images/monitor/park_head_3.png) no-repeat center;} 
+.f_park_detail_icon4{background:url(../../../../assets-adminlte/images/monitor/position.png) no-repeat center;}
+.f_park_detail_desc{float:left;margin-left:5px;text-align:left;width:138px;height:auto;}
+
+.f_park_detail_11{float:left;margin-left:20px;width:560px;height:60px;overflow:hidden;}
+.f_park_detail_desc1{float:left;margin-left:5px;text-align:left;width:525px;height:auto;}
+
+.f_park_detail_2{float:left;margin-left:85px;margin-top:10px;width:380px;height:180px;line-height:180px;text-align:center;color:gray;background-color:#EEEEEE;border:1px solid #DDDDDD;}
+.f_park_detail_2 img{border:0;width:380px;height:180px;cursor:default;background:url(../../../../assets-adminlte/images/monitor/default_car.png) no-repeat center;}
+
+
+

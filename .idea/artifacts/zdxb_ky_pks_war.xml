@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="zdxb-ky-pks:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="zdxb-ky-pks.war">
+      <element id="artifact" artifact-name="zdxb-ky-pks:war exploded" />
+    </root>
+  </artifact>
+</component>

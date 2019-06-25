@@ -1,0 +1,6 @@
+@CHARSET "UTF-8";
+*{margin:0;padding:0;border:0;}
+.col-xs-12{margin-bottom: 8px;float:center;"}
+.form-group{margin-left: 15px;max-width: 300px;float:center;}
+.form-control{width:220px;float:center;}
+.control-labe{width:80px;aling:left;float:center;}

@@ -1,0 +1,84 @@
+/** xwt:add 今日概况背景色 **/
+.bg-jrsf1, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body{
+	background-color: #3598DC !important
+}
+.bg-yellow, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body{
+	background-color: #f39c12 !important
+}
+.bg-jrcz1, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body{
+	background-color: #E7505A !important
+}
+.bg-jrtc1, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body{
+	background-color: #32C5D2 !important
+}
+.bg-jrjf1, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body{
+	background-color: #8E44AD !important
+}
+.bg-bwzs1, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body{
+	background-color: #1CA897 !important
+}
+.bg-zxrs1, .callout.callout-info, .alert-info, .label-info, .modal-info .modal-body{
+	background-color: #D96D00 !important
+}
+
+/** 今日概况鼠标移动后背景色  **/
+.bg-jrsf2, .callout.callout-warning, .alert-warning, .label-warning,
+	.modal-warning .modal-body {
+	display: none;
+	background-color: #216089 !important
+}
+.bg-jrcz2, .callout.callout-warning, .alert-warning, .label-warning,
+	.modal-warning .modal-body {
+	display: none;
+	background-color: #AD2E37 !important
+}
+.bg-jrtc2, .callout.callout-warning, .alert-warning, .label-warning,
+	.modal-warning .modal-body {
+	display: none;
+	background-color: #1F7B83 !important
+}
+.bg-jrjf2, .callout.callout-warning, .alert-warning, .label-warning,
+	.modal-warning .modal-body {
+	display: none;
+	background-color: #5A2B6C !important
+}
+.bg-bwzs2, .callout.callout-warning, .alert-warning, .label-warning,
+	.modal-warning .modal-body {
+	display: none;
+	background-color: #0D5148 !important
+}
+.bg-zxrs2, .callout.callout-warning, .alert-warning, .label-warning,
+	.modal-warning .modal-body {
+	display: none;
+	background-color: #8C2300 !important
+}
+.bg-jrsf1,.bg-jrcz1,.bg-jrtc1,.bg-jrjf1,.bg-bwzs1,.bg-zxrs1,
+.bg-jrsf2,.bg-jrcz2,.bg-jrtc2,.bg-jrjf2,.bg-bwzs2,.bg-zxrs2{
+	color: #fff !important
+}
+.pull-left,.pull-right{
+	font-size:14px;
+}
+.small-box{
+	margin-left: 5px;
+	margin-right: 5px;
+	min-height:123px;
+	_height:123px;
+}
+.pCss{
+/* 	font-family:微软雅黑; */
+	width:100%;
+}
+.xLine{
+	border:0px;
+	border-bottom:1px dashed #FFFFFF;
+	width:100%;
+	margin:0px;
+	padidng:0px;
+	font-size: 10px;
+
+}
+ .small-box>.inner { 
+     /*padding: 0px 0px 0px 0px;*/
+     padding: 3px;
+ } 

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdxb.tcmcsm.pks.dao.KyGyDbDao">
+
+	<resultMap type="com.zdxb.tcmcsm.pks.entity.KyGyDb"
+		id="KyGyDb">
+		<result property="batchNumber" column="S_BATCH_NUMBER"></result>
+		<result property="deviceCode" column="S_DEVICE_CODE"></result>
+		<result property="deviceName" column="S_DEVICE_NAME"></result>
+		<result property="processName" column="S_PROCESS_NAME"></result>
+		<result property="stageName" column="S_STAGE_NAME"></result>
+		<result property="productName" column="S_PRODUCT_NAME"></result>
+		<result property="paraName" column="S_PARA_NAME"></result>
+		<result property="value" column="N_VALUE"></result>
+		<result property="unit" column="S_UNIT"></result>
+		<result property="curt" column="TM_CURT"></result>
+
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		S_BATCH_NUMBER,
+		S_DEVICE_CODE,
+		S_DEVICE_NAME,
+		S_PROCESS_NAME,
+		S_STAGE_NAME,
+		S_PRODUCT_NAME,
+		S_PARA_NAME,
+		N_VALUE,
+		S_UNIT,
+		TM_CURT
+	</sql>
+
+	<!-- 查询条件 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="batchNumber != null and batchNumber != '' ">
+				<!-- and S_BATCH_NUMBER like '%'||#{batchNumber}||'%' -->
+				and S_BATCH_NUMBER = #{batchNumber}
+			</if>
+			<if test="deviceCode != null and deviceCode != '' ">
+				and S_DEVICE_CODE = #{deviceCode}
+			</if>
+			<if test="deviceName != null and deviceName != '' ">
+				and S_DEVICE_NAME = #{deviceName}
+			</if>
+			<if test="processName != null and processName != '' ">
+				and S_PROCESS_NAME = #{processName}
+			</if>
+			<if test="stageName != null and stageName != '' ">
+				and S_STAGE_NAME = #{stageName}
+			</if>
+			<if test="productName != null and productName !='' ">
+				and S_PRODUCT_NAME = #{productName}
+			</if>
+			<if test="paraName != null and paraName != '' ">
+				and S_PARA_NAME = #{paraName}
+			</if>
+			<if test="value != null and value !=' ' ">
+				and N_VALUE = #{value}
+			</if>
+			<if test="unit != null and  unit != '' ">
+				and S_UNIT = #{unit}
+			</if>
+			<if test="curt != null and  curt != '' ">
+				and TM_CURT = #{curt}
+			</if>
+		</trim>
+	</sql>
+
+
+	<select id="queryByList" resultMap="KyGyDb"
+		parameterType="Object">
+		<if test="pager != null">
+			${pager.oracleQueryConditionStart}
+		</if>
+		select
+		<include refid="Base_Column_List" />
+		from ky_gy_db
+		<include refid="Example_Where_Clause" />
+		and TM_CURT <![CDATA[>=]]>
+		to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+		and TM_CURT <![CDATA[<=]]>
+		to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss')
+		<if test="pager.orderCondition == ''">
+			order by tm_curt desc
+		</if>
+		<if
+			test="pager.orderCondition != null and pager.orderCondition != ''">
+			${pager.orderCondition}
+		</if>
+		<if test="pager != null">
+			${pager.oracleQueryConditionEnd}
+		</if>
+
+	</select>
+
+	<!-- 列表总数 -->
+	<select id="queryByCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1) from ky_gy_db
+		<include refid="Example_Where_Clause" />
+		and TM_CURT <![CDATA[>=]]>
+		to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+		and TM_CURT <![CDATA[<=]]>
+		to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss')
+	</select>
+
+	<!-- 阶段名称下拉框 -->
+	<select id="selectStageName" resultType="java.lang.String">
+		select
+		distinct(a.S_STAGE_NAME) from ky_gy_db a group by a.S_STAGE_NAME
+	</select>
+
+	<!-- 导出 -->
+	<select id="export" resultMap="KyGyDb" parameterType="Object">
+		select
+		<include refid="Base_Column_List" />
+		from ky_gy_db
+		where 1=1
+		<if test="batchNumber != null and batchNumber != '' ">
+			and S_BATCH_NUMBER = #{batchNumber}
+		</if>
+		<if test="stageName != null and stageName != '' ">
+			and S_STAGE_NAME = #{stageName}
+		</if>
+		<if test="productName != null and productName !='' ">
+			and S_PRODUCT_NAME = #{productName}
+		</if>
+		<if test="paraName != null and paraName != '' ">
+				and S_PARA_NAME = #{paraName}
+		</if>
+		and TM_CURT <![CDATA[>=]]>
+		to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+		and TM_CURT <![CDATA[<=]]>
+		to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	<!-- 1.减压浓缩真空度平均值 -->
+	<select id="decompressionConcentrationVacuumDegree"
+		resultType="java.lang.Float" parameterType="Object">
+		select NVL(avg(N_VALUE),0) from ky_gy_db
+		where 1=1
+		and S_PARA_NAME =
+		'蒸汽压力'
+		and S_STAGE_NAME = '减压浓缩'
+		<if test="batchNumber != null and batchNumber != '' ">
+			and S_BATCH_NUMBER = #{batchNumber}
+		</if>
+		and TM_CURT <![CDATA[>=]]>
+		to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+		and TM_CURT <![CDATA[<=]]>
+		to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	<!-- 2.减压浓缩压力 平均值 -->
+	<select id="decompressionConcentrationPressure"
+		resultType="java.lang.Float" parameterType="Object">
+		select NVL(avg(N_VALUE),0) from ky_gy_db
+		where 1=1
+		and S_PARA_NAME =
+		'真空度'
+		and S_STAGE_NAME = '减压浓缩'
+		<if test="batchNumber != null and batchNumber != '' ">
+			and S_BATCH_NUMBER = #{batchNumber}
+		</if>
+		and TM_CURT <![CDATA[>=]]>
+		to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+		and TM_CURT <![CDATA[<=]]>
+		to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss')
+	</select>
+	<!-- 3.浸膏冷藏真空度平均值 -->
+	<select id="extractColdstorageVacuumDegree"
+		resultType="java.lang.Float" parameterType="Object">
+		select NVL(avg(N_VALUE),0) from ky_gy_db
+		where 1=1
+		and S_PARA_NAME =
+		'真空度'
+		and S_STAGE_NAME = '浸膏冷藏'
+		<if test="batchNumber != null and batchNumber != '' ">
+			and S_BATCH_NUMBER = #{batchNumber}
+		</if>
+		and TM_CURT <![CDATA[>=]]>
+		to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+		and TM_CURT <![CDATA[<=]]>
+		to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss')
+	</select>
+
+	<select id="queryAvgByList" resultMap="KyGyDb"
+		parameterType="Object">
+		<if test="pager != null">
+			${pager.oracleQueryConditionStart}
+		</if>
+		SELECT a.S_BATCH_NUMBER, round(AVG(a.jynsyl),3) as jynsyl,
+		round(AVG(a.jynszkd),3) as jynszkd
+		, round(AVG(a.qgnczkd),3) as qgnczkd
+		FROM (
+		SELECT S_BATCH_NUMBER AS
+		S_BATCH_NUMBER
+		, DECODE(S_PARA_NAME,
+		'蒸汽压力',
+		N_VALUE, 0) AS jynsyl
+		,
+		DECODE(S_PARA_NAME, '真空度', N_VALUE, 0)
+		AS
+		jynszkd
+		, DECODE(S_STAGE_NAME,
+		'浸膏冷藏', N_VALUE, 0) AS qgnczkd
+		FROM
+		ky_gy_db
+		WHERE (1 = 1
+		AND
+		((S_PARA_NAME IN ('蒸汽压力', '真空度')
+		AND
+		S_STAGE_NAME = '减压浓缩')
+		OR
+		(S_STAGE_NAME = '浸膏冷藏'
+		AND S_PARA_NAME =
+		'真空度'))
+		<if test="batchNumber != null and batchNumber != '' ">
+			and S_BATCH_NUMBER = #{batchNumber}
+		</if>
+		and TM_CURT <![CDATA[>=]]>
+		to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+		and TM_CURT <![CDATA[<=]]>
+		to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss'))
+		<if test="pager.orderCondition == ''">
+			order by tm_curt desc
+		</if>
+		) a
+		GROUP BY a.S_BATCH_NUMBER
+		<if
+			test="pager.orderCondition != null and pager.orderCondition != ''">
+			${pager.orderCondition}
+		</if>
+		<if test="pager != null">
+			${pager.oracleQueryConditionEnd}
+		</if>
+
+	</select>
+
+	<select id="queryAvgByCount" resultType="java.lang.Integer"
+		parameterType="Object">
+		select count(1) from (
+		SELECT b.S_BATCH_NUMBER, AVG(b.jynsyl),
+		AVG(b.jynszkd)
+		, AVG(b.qgnczkd)
+		FROM (
+		SELECT S_BATCH_NUMBER AS
+		S_BATCH_NUMBER
+		, DECODE(S_PARA_NAME, '蒸汽压力', N_VALUE, 0) AS jynsyl
+		,
+		DECODE(S_PARA_NAME, '真空度', N_VALUE, 0) AS jynszkd
+		,
+		DECODE(S_STAGE_NAME, '浸膏冷藏', N_VALUE, 0) AS qgnczkd
+		FROM ky_gy_db
+		WHERE
+		1 = 1
+		AND ((S_PARA_NAME IN ('蒸汽压力', '真空度')
+		AND S_STAGE_NAME = '减压浓缩')
+		OR
+		(S_STAGE_NAME = '浸膏冷藏'
+		AND S_PARA_NAME = '真空度'))
+		and TM_CURT <![CDATA[>=]]>
+		to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+		and TM_CURT <![CDATA[<=]]>
+		to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss')
+		) b GROUP BY b.S_BATCH_NUMBER
+		)
+
+	</select>
+	<!-- 导出 -->
+	<select id="ChuenChenNongSuoexport" resultMap="KyGyDb"
+		parameterType="Object">
+		SELECT a.S_BATCH_NUMBER, round(AVG(a.jynsyl),3) as jynsyl,
+		round(AVG(a.jynszkd),3) as jynszkd
+		, round(AVG(a.qgnczkd),3) as qgnczkd
+		FROM (
+		SELECT S_BATCH_NUMBER AS
+		S_BATCH_NUMBER
+		, DECODE(S_PARA_NAME,
+		'蒸汽压力',
+		N_VALUE, 0) AS jynsyl
+		,
+		DECODE(S_PARA_NAME, '真空度', N_VALUE, 0)
+		AS
+		jynszkd
+		, DECODE(S_STAGE_NAME,
+		'浸膏冷藏', N_VALUE, 0) AS qgnczkd
+		FROM
+		ky_gy_db
+		WHERE (1 = 1
+		AND
+		((S_PARA_NAME IN ('蒸汽压力', '真空度')
+		AND
+		S_STAGE_NAME = '减压浓缩')
+		OR
+		(S_STAGE_NAME = '浸膏冷藏'
+		AND S_PARA_NAME =
+		'真空度'))
+		<if test="batchNumber != null and batchNumber != '' ">
+			and S_BATCH_NUMBER = #{batchNumber}
+		</if>
+		and TM_CURT <![CDATA[>=]]>
+		to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+		and TM_CURT <![CDATA[<=]]>
+		to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss'))
+		<if test="pager.orderCondition == ''">
+			order by tm_curt desc
+		</if>
+		) a
+		GROUP BY a.S_BATCH_NUMBER
+	</select>
+	
+	<select id="selectAddEthanolOne" resultMap="KyGyDb"
+		parameterType="Object">
+	</select>
+
+
+	<!-- <select id="queryAll" resultMap="KyGyDb"> select * from (select tt.*, 
+		rownum as rowno from (select * from ky_gy_db t where t.s_batch_number like 
+		'%%' and t.s_device_code like '%%' and t.s_para_name like '%上部温度%' and t.s_stage_name 
+		like '%加醇阶段1%' order by t.tm_curt desc ) tt <![CDATA[ where rownum <= #{ePage} 
+		) table_alias where table_alias.rowno >= #{sPage} ]]> </select> 查询条数 <select 
+		id="total" resultType="java.lang.Integer"> select count(*) from ( select 
+		* from ky_gy_db t where t.s_batch_number = 'Z190545' and t.s_device_code 
+		='T3011Q' and t.s_para_name like '%上部温度%' and t.s_stage_name like '%加醇阶段1%' 
+		order by t.tm_curt ) </select> -->
+
+</mapper>

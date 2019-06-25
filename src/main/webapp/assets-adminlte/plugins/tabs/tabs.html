@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Tabs</title>
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+        name="viewport" />
+    <!--<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>-->
+
+    <script type="text/javascript" src="js/jQuery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/tabs.js"></script>
+    <link href="css/tabs.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#menu li").click(function(){
+                var url =   $(this).children("a").attr("href");
+                var text =  $(this).children("a").text();
+                var closable = $(this).children("a").attr("closable");
+                if(closable==undefined)
+                {
+                    closable=false;
+                }
+                
+                addTab(null,text,url,closable);
+            
+                return false;
+            
+            });
+        
+        });
+      
+        
+        function atb()
+        {
+            //addTab('','测试标签',false);
+            addTab(null,'测试标签页','http://www.baidu.com',true);
+        }
+        
+        function tabs_ul_w()
+        {
+            var w =$("#tabs-ul").innerWidth();
+            alert(w);
+        }
+        
+        
+    </script>
+
+    <style type="text/css">
+       
+    </style>
+</head>
+<body>
+    <button onclick="atb()">
+        添加</button>
+    <button onclick="tabs_ul_w()">
+        TabUlW</button>
+        
+        <div>
+            <ul id="menu">
+                <li><a href="http://www.baidu.com" closable="true">百度一下</a></li>
+                <li><a href="http://www.qq.com">腾讯网</a></li>
+                <li><a href="http://www.sina.com.cn">新浪网</a></li>
+                <li><a href="http://www.bootcss.com" closable="true">bootcss</a></li>
+                <li><a href="http://www.163.com">网易163</a></li>
+                <li><a href="http://www.apple.com.cn" closable="true">Apple(苹果)</a></li>
+            </ul>
+        </div>
+        
+    <div class="tab-container">
+        <div class="tab-pages">
+            <div class="roll-left">
+                <a href="#" id="roll-left"></a>
+            </div>
+            <div class="tabs">
+                <ul id="tabs-ul">
+                    <li class="tab-item current-tab" id="tab-item0">
+                        <div class="tab-icon" style="background-image: url('images/datebox.png')">
+                        </div>
+                        <div class="tab-text">
+                            首页</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="roll-right">
+                <a href="#" id="roll-right"></a>
+            </div>
+        </div>
+        <div class="tab-contents">
+			<div id="content-holder0" class="content-holder" style="display: block;"><iframe id="holder-frame0" class="frame-display" border="0" src="index.html" frameborder="no" height="100%" width="100%"></iframe></div>
+        </div>
+    </div>
+</body>
+</html>

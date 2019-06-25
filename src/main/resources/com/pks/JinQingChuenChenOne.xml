@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdxb.tcmcsm.pks.dao.JinQingChuenChenDao">
+
+	<resultMap
+		type="com.zdxb.tcmcsm.pks.entity.JinQingChuenChenOne" id="KyGyDb">
+		<result property="batchNumber" column="S_BATCH_NUMBER"></result>
+		<result property="deviceCode" column="S_DEVICE_CODE"></result>
+	
+		<result property="processName" column="S_PROCESS_NAME"></result>
+		<result property="stageName" column="S_STAGE_NAME"></result>
+
+		<result property="upperTemperature" column="upperTemperature"></result>
+		<result property="lowerTemperature" column="lowerTemperature"></result>
+		<result property="cumulativeAmount" column="cumulativeAmount"></result>
+		<result property="currentSpeed" column="currentSpeed"></result>
+		<result property="curt" column="TM_CURT"></result>
+
+	</resultMap>
+
+	<select id="selectAddEthanolOne" resultMap="KyGyDb"
+		parameterType="Object">
+		<if test="pager != null">
+			${pager.oracleQueryConditionStart}
+		</if>
+		SELECT a.S_BATCH_NUMBER, a.S_DEVICE_CODE,
+		max(a.upperTemperature)as upperTemperature, max(a.lowerTemperature)as lowerTemperature,
+		max(a.cumulativeAmount) as cumulativeAmount,max(a.currentSpeed) as currentSpeed,a.TM_CURT
+			FROM (
+			SELECT S_BATCH_NUMBER, S_DEVICE_CODE, TM_CURT
+				 , DECODE(S_PARA_NAME, '罐上部温度', N_VALUE, 0) AS upperTemperature
+				 , DECODE(S_PARA_NAME, '罐下部温度', N_VALUE, 0) AS lowerTemperature
+			     , DECODE(S_PARA_NAME, '乙醇流量计累积量', N_VALUE, 0) AS cumulativeAmount
+			     , DECODE(S_PARA_NAME, '乙醇流量计流速', N_VALUE, 0) AS currentSpeed
+			 FROM ky_gy_db
+			 WHERE (1 = 1
+			 AND (S_PARA_NAME IN ('罐上部温度','乙醇流量计累积量', '乙醇流量计流速', '罐下部温度')
+			 AND S_STAGE_NAME = '加醇阶段1')
+			 AND S_PROCESS_NAME = '金青醇沉'		
+			 <if test="batchNumber != null and batchNumber != '' ">
+			 	and S_BATCH_NUMBER = #{batchNumber}
+			 </if>		
+			 <if test="deviceCode != null and deviceCode != '' ">
+				and S_DEVICE_CODE = #{deviceCode}
+			 </if>	
+			 and TM_CURT <![CDATA[>=]]> to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+			 and TM_CURT <![CDATA[<=]]> to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss'))
+			 ORDER BY tm_curt DESC) a
+		GROUP BY a.S_BATCH_NUMBER,a.S_DEVICE_CODE,a.TM_CURT
+		<if
+			test="pager.orderCondition != null and pager.orderCondition != ''">
+			${pager.orderCondition}
+		</if>
+		<if test="pager != null">
+			${pager.oracleQueryConditionEnd}
+		</if>
+	</select>
+
+	<!-- 列表总数 -->
+	<select id="selectAddEthanolOneByCount"
+		resultType="java.lang.Integer" parameterType="Object">
+		select count(1) from (
+			SELECT a.S_BATCH_NUMBER, a.S_DEVICE_CODE, 
+				max(a.upperTemperature)as upperTemperature, max(a.lowerTemperature)as lowerTemperature,
+			    max(a.cumulativeAmount) as cumulativeAmount, max(a.currentSpeed) as currentSpeed,a.TM_CURT
+			FROM (
+				SELECT S_BATCH_NUMBER, S_DEVICE_CODE, TM_CURT, DECODE(S_PARA_NAME, '罐上部温度', N_VALUE, 0) AS upperTemperature
+						, DECODE(S_PARA_NAME, '罐下部温度', N_VALUE, 0) AS lowerTemperature
+						, DECODE(S_PARA_NAME, '乙醇流量计累积量', N_VALUE, 0) AS cumulativeAmount
+		                , DECODE(S_PARA_NAME, '乙醇流量计流速', N_VALUE, 0) AS currentSpeed
+				FROM ky_gy_db
+		          WHERE (1 = 1
+		        AND (S_PARA_NAME IN ('罐上部温度', '乙醇流量计累积量', '乙醇流量计流速', '罐下部温度')
+		        AND S_STAGE_NAME = '加醇阶段1')
+		        AND S_PROCESS_NAME = '金青醇沉'
+		        <if test="batchNumber != null and batchNumber != '' ">
+				and S_BATCH_NUMBER = #{batchNumber}
+				</if>
+				<if test="deviceCode != null and deviceCode != '' ">
+				and S_DEVICE_CODE = #{deviceCode}
+				</if>
+				and TM_CURT <![CDATA[>=]]> to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+				and TM_CURT <![CDATA[<=]]> to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss'))
+				ORDER BY tm_curt DESC ) a
+			GROUP BY a.S_BATCH_NUMBER,a.S_DEVICE_CODE,a.TM_CURT
+		)
+	</select>
+	
+	<!-- 金青醇沉第一阶段导出 -->
+	<select id="exportOne" resultMap="KyGyDb"
+		parameterType="Object">
+		SELECT a.S_BATCH_NUMBER, a.S_DEVICE_CODE,
+			max(a.upperTemperature)as upperTemperature, max(a.lowerTemperature) as lowerTemperature,
+			max(a.cumulativeAmount) as cumulativeAmount,max(a.currentSpeed) as currentSpeed,a.TM_CURT
+			FROM (
+				SELECT
+					S_BATCH_NUMBER, S_DEVICE_CODE, TM_CURT
+					, DECODE(S_PARA_NAME, '罐上部温度', N_VALUE, 0) AS upperTemperature
+					, DECODE(S_PARA_NAME, '罐下部温度', N_VALUE, 0) AS lowerTemperature
+					, DECODE(S_PARA_NAME, '乙醇流量计累积量', N_VALUE, 0) AS cumulativeAmount
+					, DECODE(S_PARA_NAME, '乙醇流量计流速', N_VALUE, 0) AS currentSpeed
+					FROM ky_gy_db
+					WHERE (1 = 1
+					AND (S_PARA_NAME IN ('罐上部温度','乙醇流量计累积量', '乙醇流量计流速', '罐下部温度')
+					AND S_STAGE_NAME = '加醇阶段1')
+					AND S_PROCESS_NAME = '金青醇沉'
+					<if test="batchNumber != null and batchNumber != '' ">
+						and S_BATCH_NUMBER = #{batchNumber}
+					</if>
+					<if test="deviceCode != null and deviceCode != '' ">
+						and S_DEVICE_CODE = #{deviceCode}
+					</if>	
+					and TM_CURT <![CDATA[>=]]> to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+					and TM_CURT <![CDATA[<=]]> to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss'))
+				ORDER BY tm_curt DESC) a
+			GROUP BY a.S_BATCH_NUMBER,a.S_DEVICE_CODE,a.TM_CURT
+	</select>
+	
+	<!--金青醇沉第二阶段分页查询  -->
+	<select id="selectAddEthanolTow" resultMap="KyGyDb"
+		parameterType="Object">
+		<if test="pager != null">
+			${pager.oracleQueryConditionStart}
+		</if>
+		SELECT a.S_BATCH_NUMBER, a.S_DEVICE_CODE,
+		max(a.upperTemperature)as upperTemperature, max(a.lowerTemperature)as lowerTemperature,
+		max(a.cumulativeAmount) as cumulativeAmount,max(a.currentSpeed) as currentSpeed,a.TM_CURT
+			FROM (
+			SELECT S_BATCH_NUMBER, S_DEVICE_CODE, TM_CURT
+				 , DECODE(S_PARA_NAME, '罐上部温度', N_VALUE, 0) AS upperTemperature
+				 , DECODE(S_PARA_NAME, '罐下部温度', N_VALUE, 0) AS lowerTemperature
+			     , DECODE(S_PARA_NAME, '乙醇流量计累积量', N_VALUE, 0) AS cumulativeAmount
+			     , DECODE(S_PARA_NAME, '乙醇流量计流速', N_VALUE, 0) AS currentSpeed
+			 FROM ky_gy_db
+			 WHERE (1 = 1
+			 AND (S_PARA_NAME IN ('罐上部温度','乙醇流量计累积量', '乙醇流量计流速', '罐下部温度')
+			 AND S_STAGE_NAME = '加醇阶段2')
+			 AND S_PROCESS_NAME = '金青醇沉'		
+			 <if test="batchNumber != null and batchNumber != '' ">
+			 	and S_BATCH_NUMBER = #{batchNumber}
+			 </if>		
+			 <if test="deviceCode != null and deviceCode != '' ">
+				and S_DEVICE_CODE = #{deviceCode}
+			 </if>	
+			 and TM_CURT <![CDATA[>=]]> to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+			 and TM_CURT <![CDATA[<=]]> to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss'))
+			 ORDER BY tm_curt DESC) a
+		GROUP BY a.S_BATCH_NUMBER,a.S_DEVICE_CODE,a.TM_CURT
+		<if
+			test="pager.orderCondition != null and pager.orderCondition != ''">
+			${pager.orderCondition}
+		</if>
+		<if test="pager != null">
+			${pager.oracleQueryConditionEnd}
+		</if>
+	</select>
+	
+	<!-- 金青醇沉第二阶段 列表总数 -->
+	<select id="selectAddEthanolTowByCount"
+		resultType="java.lang.Integer" parameterType="Object">
+		select count(1) from (
+			SELECT a.S_BATCH_NUMBER, a.S_DEVICE_CODE, 
+				max(a.upperTemperature)as upperTemperature, max(a.lowerTemperature)as lowerTemperature,
+			    max(a.cumulativeAmount) as cumulativeAmount, max(a.currentSpeed) as currentSpeed,a.TM_CURT
+			FROM (
+				SELECT S_BATCH_NUMBER, S_DEVICE_CODE, TM_CURT, DECODE(S_PARA_NAME, '罐上部温度', N_VALUE, 0) AS upperTemperature
+						, DECODE(S_PARA_NAME, '罐下部温度', N_VALUE, 0) AS lowerTemperature
+						, DECODE(S_PARA_NAME, '乙醇流量计累积量', N_VALUE, 0) AS cumulativeAmount
+		                , DECODE(S_PARA_NAME, '乙醇流量计流速', N_VALUE, 0) AS currentSpeed
+				FROM ky_gy_db
+		          WHERE (1 = 1
+		        AND (S_PARA_NAME IN ('罐上部温度', '乙醇流量计累积量', '乙醇流量计流速', '罐下部温度')
+		        AND S_STAGE_NAME = '加醇阶段2')
+		        AND S_PROCESS_NAME = '金青醇沉'
+		        <if test="batchNumber != null and batchNumber != '' ">
+				and S_BATCH_NUMBER = #{batchNumber}
+				</if>
+				<if test="deviceCode != null and deviceCode != '' ">
+				and S_DEVICE_CODE = #{deviceCode}
+				</if>
+				and TM_CURT <![CDATA[>=]]> to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+				and TM_CURT <![CDATA[<=]]> to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss'))
+				ORDER BY tm_curt DESC ) a
+			GROUP BY a.S_BATCH_NUMBER,a.S_DEVICE_CODE,a.TM_CURT
+		)
+	</select>
+	
+	<!-- 金青醇沉第二阶段导出 -->
+	<select id="exportTow" resultMap="KyGyDb"
+		parameterType="Object">
+		SELECT a.S_BATCH_NUMBER, a.S_DEVICE_CODE,
+			max(a.upperTemperature)as upperTemperature, max(a.lowerTemperature) as lowerTemperature,
+			max(a.cumulativeAmount) as cumulativeAmount,max(a.currentSpeed) as currentSpeed,a.TM_CURT
+			FROM (
+				SELECT
+					S_BATCH_NUMBER, S_DEVICE_CODE, TM_CURT
+					, DECODE(S_PARA_NAME, '罐上部温度', N_VALUE, 0) AS upperTemperature
+					, DECODE(S_PARA_NAME, '罐下部温度', N_VALUE, 0) AS lowerTemperature
+					, DECODE(S_PARA_NAME, '乙醇流量计累积量', N_VALUE, 0) AS cumulativeAmount
+					, DECODE(S_PARA_NAME, '乙醇流量计流速', N_VALUE, 0) AS currentSpeed
+					FROM ky_gy_db
+					WHERE (1 = 1
+					AND (S_PARA_NAME IN ('罐上部温度','乙醇流量计累积量', '乙醇流量计流速', '罐下部温度')
+					AND S_STAGE_NAME = '加醇阶段2')
+					AND S_PROCESS_NAME = '金青醇沉'
+					<if test="batchNumber != null and batchNumber != '' ">
+						and S_BATCH_NUMBER = #{batchNumber}
+					</if>
+					<if test="deviceCode != null and deviceCode != '' ">
+						and S_DEVICE_CODE = #{deviceCode}
+					</if>	
+					and TM_CURT <![CDATA[>=]]> to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+					and TM_CURT <![CDATA[<=]]> to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss'))
+				ORDER BY tm_curt DESC) a
+			GROUP BY a.S_BATCH_NUMBER,a.S_DEVICE_CODE,a.TM_CURT
+	</select>
+	
+	<!--金青醇沉第三阶段分页查询  -->
+	<select id="selectAddEthanolThree" resultMap="KyGyDb"
+		parameterType="Object">
+		<if test="pager != null">
+			${pager.oracleQueryConditionStart}
+		</if>
+		SELECT a.S_BATCH_NUMBER, a.S_DEVICE_CODE,
+		max(a.upperTemperature)as upperTemperature, max(a.lowerTemperature)as lowerTemperature,
+		max(a.cumulativeAmount) as cumulativeAmount,max(a.currentSpeed) as currentSpeed,a.TM_CURT
+			FROM (
+			SELECT S_BATCH_NUMBER, S_DEVICE_CODE, TM_CURT
+				 , DECODE(S_PARA_NAME, '罐上部温度', N_VALUE, 0) AS upperTemperature
+				 , DECODE(S_PARA_NAME, '罐下部温度', N_VALUE, 0) AS lowerTemperature
+			     , DECODE(S_PARA_NAME, '乙醇流量计累积量', N_VALUE, 0) AS cumulativeAmount
+			     , DECODE(S_PARA_NAME, '乙醇流量计流速', N_VALUE, 0) AS currentSpeed
+			 FROM ky_gy_db
+			 WHERE (1 = 1
+			 AND (S_PARA_NAME IN ('罐上部温度','乙醇流量计累积量', '乙醇流量计流速', '罐下部温度')
+			 AND S_STAGE_NAME = '加醇阶段3')
+			 AND S_PROCESS_NAME = '金青醇沉'		
+			 <if test="batchNumber != null and batchNumber != '' ">
+			 	and S_BATCH_NUMBER = #{batchNumber}
+			 </if>		
+			 <if test="deviceCode != null and deviceCode != '' ">
+				and S_DEVICE_CODE = #{deviceCode}
+			 </if>	
+			 and TM_CURT <![CDATA[>=]]> to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+			 and TM_CURT <![CDATA[<=]]> to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss'))
+			 ORDER BY tm_curt DESC) a
+		GROUP BY a.S_BATCH_NUMBER,a.S_DEVICE_CODE,a.TM_CURT
+		<if
+			test="pager.orderCondition != null and pager.orderCondition != ''">
+			${pager.orderCondition}
+		</if>
+		<if test="pager != null">
+			${pager.oracleQueryConditionEnd}
+		</if>
+	</select>
+	
+	<!-- 金青醇沉第三阶段 列表总数 -->
+	<select id="selectAddEthanolThreeByCount"
+		resultType="java.lang.Integer" parameterType="Object">
+		select count(1) from (
+			SELECT a.S_BATCH_NUMBER, a.S_DEVICE_CODE, 
+				max(a.upperTemperature)as upperTemperature, max(a.lowerTemperature)as lowerTemperature,
+			    max(a.cumulativeAmount) as cumulativeAmount, max(a.currentSpeed) as currentSpeed,a.TM_CURT
+			FROM (
+				SELECT S_BATCH_NUMBER, S_DEVICE_CODE, TM_CURT, DECODE(S_PARA_NAME, '罐上部温度', N_VALUE, 0) AS upperTemperature
+						, DECODE(S_PARA_NAME, '罐下部温度', N_VALUE, 0) AS lowerTemperature
+						, DECODE(S_PARA_NAME, '乙醇流量计累积量', N_VALUE, 0) AS cumulativeAmount
+		                , DECODE(S_PARA_NAME, '乙醇流量计流速', N_VALUE, 0) AS currentSpeed
+				FROM ky_gy_db
+		          WHERE (1 = 1
+		        AND (S_PARA_NAME IN ('罐上部温度', '乙醇流量计累积量', '乙醇流量计流速', '罐下部温度')
+		        AND S_STAGE_NAME = '加醇阶段3')
+		        AND S_PROCESS_NAME = '金青醇沉'
+		        <if test="batchNumber != null and batchNumber != '' ">
+				and S_BATCH_NUMBER = #{batchNumber}
+				</if>
+				<if test="deviceCode != null and deviceCode != '' ">
+				and S_DEVICE_CODE = #{deviceCode}
+				</if>
+				and TM_CURT <![CDATA[>=]]> to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+				and TM_CURT <![CDATA[<=]]> to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss'))
+				ORDER BY tm_curt DESC ) a
+			GROUP BY a.S_BATCH_NUMBER,a.S_DEVICE_CODE,a.TM_CURT
+		)
+	</select>
+	
+	<!-- 金青醇沉第三阶段导出 -->
+	<select id="exportThree" resultMap="KyGyDb"
+		parameterType="Object">
+		SELECT a.S_BATCH_NUMBER, a.S_DEVICE_CODE,
+			max(a.upperTemperature)as upperTemperature, max(a.lowerTemperature) as lowerTemperature,
+			max(a.cumulativeAmount) as cumulativeAmount,max(a.currentSpeed) as currentSpeed,a.TM_CURT
+			FROM (
+				SELECT
+					S_BATCH_NUMBER, S_DEVICE_CODE, TM_CURT
+					, DECODE(S_PARA_NAME, '罐上部温度', N_VALUE, 0) AS upperTemperature
+					, DECODE(S_PARA_NAME, '罐下部温度', N_VALUE, 0) AS lowerTemperature
+					, DECODE(S_PARA_NAME, '乙醇流量计累积量', N_VALUE, 0) AS cumulativeAmount
+					, DECODE(S_PARA_NAME, '乙醇流量计流速', N_VALUE, 0) AS currentSpeed
+					FROM ky_gy_db
+					WHERE (1 = 1
+					AND (S_PARA_NAME IN ('罐上部温度','乙醇流量计累积量', '乙醇流量计流速', '罐下部温度')
+					AND S_STAGE_NAME = '加醇阶段3')
+					AND S_PROCESS_NAME = '金青醇沉'
+					<if test="batchNumber != null and batchNumber != '' ">
+						and S_BATCH_NUMBER = #{batchNumber}
+					</if>
+					<if test="deviceCode != null and deviceCode != '' ">
+						and S_DEVICE_CODE = #{deviceCode}
+					</if>	
+					and TM_CURT <![CDATA[>=]]> to_date(#{start}, 'yyyy-mm-dd hh24:mi:ss')
+					and TM_CURT <![CDATA[<=]]> to_date(#{end}, 'yyyy-mm-dd hh24:mi:ss'))
+				ORDER BY tm_curt DESC) a
+			GROUP BY a.S_BATCH_NUMBER,a.S_DEVICE_CODE,a.TM_CURT
+	</select>
+	
+	
+
+
+
+</mapper>
