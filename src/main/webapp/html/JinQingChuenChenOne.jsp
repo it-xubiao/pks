@@ -43,7 +43,7 @@
 				
 				<label class="layui-form-label">罐 号</label>
 				<div class="layui-input-inline" style="width: 180px;">
-					<select name="deviceCode" id="deviceCode">
+					<select name="deviceCode" id="deviceCode" lay-search="">
 						<option value="">请选择</option>
 						<option value="T3011C">T3011C</option>
 						<option value="T3011D">T3011D</option>
@@ -68,7 +68,7 @@
 					</select>
 				</div>
 
-				<div class="layui-inline">
+				<!-- <div class="layui-inline">
 					<label class="layui-form-label">开始时间</label>
 					<div class="layui-input-inline">
 						<input type="text" class="layui-input" name="start" id="start"
@@ -81,6 +81,14 @@
 						<input type="text" class="layui-input" name="end" id="end"
 							lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss">
 					</div>
+				</div> -->
+				<label class="layui-form-label">排序方式</label>
+				<div class="layui-input-inline" style="width: 180px;">
+					<select name="sort" id="sort">
+						<option value="asc">升序</option>
+						<option value="desc">降序 </option>
+						
+					</select>
 				</div>
 
 				<div class="layui-inline">
@@ -179,9 +187,10 @@
 						where : {
 							batchNumber : $("#batchNumber").val(),
 							stageName : $("#stageName").val(),
-							deviceCode : $("#deviceCode").val(),
-							start : $("#start").val(),
-							end : $("#end").val()
+							deviceCode : $("#deviceCode").val()
+							,sort : $("#sort").val()
+							/* ,start : $("#start").val(),
+							end : $("#end").val() */
 
 						},
 						id : 'idTest',
@@ -206,10 +215,11 @@
 		//导出
 		function downloadfile() {
 			window
-					.open('http://127.0.0.1:8080/pks/JinQingChuenChen/exportOne?batchNumber='
+					.open('http://172.31.1.20:8081/pks/JinQingChuenChen/exportOne?batchNumber='
 							+ $("#batchNumber").val()							
-							+ '&start='
-							+ $("#start").val() + '&end=' + $("#end").val());
+							/* + '&start='
+							+ $("#start").val() + '&end=' + $("#end").val() */
+							);
 		}
 
 		function submits() {
@@ -217,9 +227,10 @@
 				where : { //设定异步数据接口的额外参数，任意设
 					batchNumber : $("#batchNumber").val(),
 					stageName : $("#stageName").val(),
-					deviceCode : $("#deviceCode").val(),
-					start : $("#start").val(),
-					end : $("#end").val()
+					deviceCode : $("#deviceCode").val()
+					,sort : $("#sort").val()
+					/* ,start : $("#start").val(),
+					end : $("#end").val() */
 				},
 				page : {
 					curr : 1,

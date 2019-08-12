@@ -81,247 +81,296 @@ public class KyGyDbModel extends BasePage {
 	 */
 	private String end;
 	
-	
 	/**
-	* @Title:  KyGyDbEntity
-	* @Description:获取batchNumber 
+	 * 排序
+	 */
+	private String sort;
+
+	/**
+	* @Title:  KyGyDbModel
+	* @Description:获取 批次号 
 	* @author: xuBiao
-	* @return: batchNumber  batchNumber
+	* @return: batchNumber  
 	*/
 	public String getBatchNumber() {
 		return batchNumber;
 	}
+	
 
 	/**
 	*@Title: setBatchNumber
-	*@Description:设置batchNumber
+	*@Description:设置批次号
 	*@author: xuBiao
-	*@param batchNumber batchNumber
+	*@param batchNumber 批次号
 	*/
 	public void setBatchNumber(String batchNumber) {
 		this.batchNumber = batchNumber;
 	}
+	
 
 	/**
-	* @Title:  KyGyDbEntity
-	* @Description:获取deviceCode 
+	* @Title:  KyGyDbModel
+	* @Description:获取 罐号 
 	* @author: xuBiao
-	* @return: deviceCode  deviceCode
+	* @return: deviceCode  
 	*/
 	public String getDeviceCode() {
 		return deviceCode;
 	}
+	
 
 	/**
 	*@Title: setDeviceCode
-	*@Description:设置deviceCode
+	*@Description:设置罐号
 	*@author: xuBiao
-	*@param deviceCode deviceCode
+	*@param deviceCode 罐号
 	*/
 	public void setDeviceCode(String deviceCode) {
 		this.deviceCode = deviceCode;
 	}
+	
 
 	/**
-	* @Title:  KyGyDbEntity
-	* @Description:获取deviceName 
+	* @Title:  KyGyDbModel
+	* @Description:获取 罐名 
 	* @author: xuBiao
-	* @return: deviceName  deviceName
+	* @return: deviceName  
 	*/
 	public String getDeviceName() {
 		return deviceName;
 	}
+	
 
 	/**
 	*@Title: setDeviceName
-	*@Description:设置deviceName
+	*@Description:设置罐名
 	*@author: xuBiao
-	*@param deviceName deviceName
+	*@param deviceName 罐名
 	*/
 	public void setDeviceName(String deviceName) {
 		this.deviceName = deviceName;
 	}
+	
 
 	/**
-	* @Title:  KyGyDbEntity
-	* @Description:获取processName 
+	* @Title:  KyGyDbModel
+	* @Description:获取 过程名称 
 	* @author: xuBiao
-	* @return: processName  processName
+	* @return: processName  
 	*/
 	public String getProcessName() {
 		return processName;
 	}
+	
 
 	/**
 	*@Title: setProcessName
-	*@Description:设置processName
+	*@Description:设置过程名称
 	*@author: xuBiao
-	*@param processName processName
+	*@param processName 过程名称
 	*/
 	public void setProcessName(String processName) {
 		this.processName = processName;
 	}
+	
 
 	/**
-	* @Title:  KyGyDbEntity
-	* @Description:获取stageName 
+	* @Title:  KyGyDbModel
+	* @Description:获取 阶段名称 
 	* @author: xuBiao
-	* @return: stageName  stageName
+	* @return: stageName  
 	*/
 	public String getStageName() {
 		return stageName;
 	}
+	
 
 	/**
 	*@Title: setStageName
-	*@Description:设置stageName
+	*@Description:设置阶段名称
 	*@author: xuBiao
-	*@param stageName stageName
+	*@param stageName 阶段名称
 	*/
 	public void setStageName(String stageName) {
 		this.stageName = stageName;
 	}
+	
 
 	/**
-	* @Title:  KyGyDbEntity
-	* @Description:获取productName 
+	* @Title:  KyGyDbModel
+	* @Description:获取 产品名称 
 	* @author: xuBiao
-	* @return: productName  productName
+	* @return: productName  
 	*/
 	public String getProductName() {
 		return productName;
 	}
+	
 
 	/**
 	*@Title: setProductName
-	*@Description:设置productName
+	*@Description:设置产品名称
 	*@author: xuBiao
-	*@param productName productName
+	*@param productName 产品名称
 	*/
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+	
 
 	/**
-	* @Title:  KyGyDbEntity
-	* @Description:获取paraName 
+	* @Title:  KyGyDbModel
+	* @Description:获取 中间体名称 
 	* @author: xuBiao
-	* @return: paraName  paraName
+	* @return: paraName  
 	*/
 	public String getParaName() {
 		return paraName;
 	}
+	
 
 	/**
 	*@Title: setParaName
-	*@Description:设置paraName
+	*@Description:设置中间体名称
 	*@author: xuBiao
-	*@param paraName paraName
+	*@param paraName 中间体名称
 	*/
 	public void setParaName(String paraName) {
 		this.paraName = paraName;
 	}
+	
 
 	/**
-	* @Title:  KyGyDbEntity
-	* @Description:获取value 
+	* @Title:  KyGyDbModel
+	* @Description:获取 实际值 
 	* @author: xuBiao
-	* @return: value  value
+	* @return: value  
 	*/
 	public Double getValue() {
 		return value;
 	}
+	
 
 	/**
 	*@Title: setValue
-	*@Description:设置value
+	*@Description:设置实际值
 	*@author: xuBiao
-	*@param value value
+	*@param value 实际值
 	*/
 	public void setValue(Double value) {
 		this.value = value;
 	}
+	
 
 	/**
-	* @Title:  KyGyDbEntity
-	* @Description:获取unit 
+	* @Title:  KyGyDbModel
+	* @Description:获取 单位 
 	* @author: xuBiao
-	* @return: unit  unit
+	* @return: unit  
 	*/
 	public String getUnit() {
 		return unit;
 	}
+	
 
 	/**
 	*@Title: setUnit
-	*@Description:设置unit
+	*@Description:设置单位
 	*@author: xuBiao
-	*@param unit unit
+	*@param unit 单位
 	*/
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
+	
 
 	/**
-	* @Title:  KyGyDbEntity
-	* @Description:获取curt 
+	* @Title:  KyGyDbModel
+	* @Description:获取 系统时间 
 	* @author: xuBiao
-	* @return: curt  curt
+	* @return: curt  
 	*/
 	public Date getCurt() {
 		return curt;
 	}
+	
 
 	/**
 	*@Title: setCurt
-	*@Description:设置curt
+	*@Description:设置系统时间
 	*@author: xuBiao
-	*@param curt curt
+	*@param curt 系统时间
 	*/
 	public void setCurt(Date curt) {
 		this.curt = curt;
 	}
+	
 
 	/**
-	* @Title:  KyGyDbEntity
-	* @Description:获取start 
+	* @Title:  KyGyDbModel
+	* @Description:获取 开始时间 
 	* @author: xuBiao
-	* @return: start  start
+	* @return: start  
 	*/
 	public String getStart() {
 		return start;
 	}
+	
 
 	/**
 	*@Title: setStart
-	*@Description:设置start
+	*@Description:设置开始时间
 	*@author: xuBiao
-	*@param start start
+	*@param start 开始时间
 	*/
 	public void setStart(String start) {
 		this.start = start;
 	}
+	
 
 	/**
-	* @Title:  KyGyDbEntity
-	* @Description:获取end 
+	* @Title:  KyGyDbModel
+	* @Description:获取 结束时间 
 	* @author: xuBiao
-	* @return: end  end
+	* @return: end  
 	*/
 	public String getEnd() {
 		return end;
 	}
+	
 
 	/**
 	*@Title: setEnd
-	*@Description:设置end
+	*@Description:设置结束时间
 	*@author: xuBiao
-	*@param end end
+	*@param end 结束时间
 	*/
 	public void setEnd(String end) {
 		this.end = end;
 	}
+
+
+	/**
+	* @Title:  KyGyDbModel
+	* @Description:获取 排序 
+	* @author: xuBiao
+	* @return: sort  
+	*/
+	public String getSort() {
+		return sort;
+	}
 	
+
+
+	/**
+	*@Title: setSort
+	*@Description:设置排序
+	*@author: xuBiao
+	*@param sort 排序
+	*/
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
 	
 	
 }

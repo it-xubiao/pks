@@ -41,7 +41,7 @@
 						class="layui-input">
 				</div>
 
-				<div class="layui-inline">
+			<!-- 	<div class="layui-inline">
 					<label class="layui-form-label">开始时间</label>
 					<div class="layui-input-inline">
 						<input type="text" class="layui-input" name="start" id="start"
@@ -54,7 +54,7 @@
 						<input type="text" class="layui-input" name="end" id="end"
 							lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss">
 					</div>
-				</div>
+				</div> -->
 
 				<div class="layui-inline">
 					<div class="layui-input-block">
@@ -184,10 +184,13 @@
 		//导出
 		function downloadfile() {
 			window
-					.open('http://127.0.0.1:8080/pks/ChuenChenNongSuo/export2?batchNumber='
+					.open('http://172.31.1.20:8081/pks/ChuenChenNongSuo/export2?batchNumber='//'http://172.31.1.20:8081/pks/ChuenChenNongSuo/export2?batchNumber='
 							+ $("#batchNumber").val()							
-							+ '&start='
-							+ $("#start").val() + '&end=' + $("#end").val());
+							/* + '&start='
+							+ $("#start").val() 
+							+ '&end=' 
+							+ $("#end").val() */
+							);
 		}
 
 		function submits() {
@@ -195,9 +198,9 @@
 				where : { //设定异步数据接口的额外参数，任意设
 					batchNumber : $("#batchNumber").val(),
 					stageName : $("#stageName").val(),
-					processName : $("#processName").val(),
-					start : $("#start").val(),
-					end : $("#end").val()
+					processName : $("#processName").val()
+					/* ,start : $("#start").val(),
+					end : $("#end").val() */
 				},
 				page : {
 					curr : 1,

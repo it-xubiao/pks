@@ -9,7 +9,10 @@
 */
 package com.zdxb.tcmcsm.pks.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -18,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,11 +43,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSONArray;
 import com.zdxb.tcmcsm.pks.common.HtmlUtil;
 import com.zdxb.tcmcsm.pks.common.ServiceException;
 import com.zdxb.tcmcsm.pks.common.excelUtil.ExcelUtil;
 import com.zdxb.tcmcsm.pks.entity.ChuenChenNongSuo;
 import com.zdxb.tcmcsm.pks.entity.KyGyDb;
+import com.zdxb.tcmcsm.pks.entity.Student;
 import com.zdxb.tcmcsm.pks.model.KyGyDbModel;
 import com.zdxb.tcmcsm.pks.page.BasePage;
 import com.zdxb.tcmcsm.pks.page.Pager;
@@ -82,6 +88,7 @@ public class KyGyDbController {
 	@RequestMapping(value = { "/listAll" })
 	@ResponseBody
 	public void listAll(KyGyDbModel model, HttpServletRequest request, HttpServletResponse response, String page,int limit) {
+		@SuppressWarnings("unchecked")
 		List<KyGyDb> dataList = (List<KyGyDb>) kyGyDbService.queryByList(model);
 		// 设置页面数据
 		HtmlUtil.writerJson(response, model.getPager().getRowCount(), dataList);
@@ -96,7 +103,17 @@ public class KyGyDbController {
 		HtmlUtil.writerJson(response, model.getPager().getRowCount(), dataList);
 
 	}
-
+	
+	/**
+	 * 
+	 * @Title: export
+	 * @Description: TODO
+	 * @param model
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 * @author: xuBiao
+	 */
 	@RequestMapping(value = { "/export" })
 	public void export(KyGyDbModel  model, HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
@@ -107,6 +124,64 @@ public class KyGyDbController {
 		String excelName = "金青醇沉模板改版20190304";
 		String codedFileName = java.net.URLEncoder.encode(excelName, "UTF-8");
 		ExcelUtil.exportExcel(request, response, headers, dataset,codedFileName);
+
+	}
+	
+	/**
+	 * 百万数据导出
+	 * @Title: export1
+	 * @Description: TODO
+	 * @param model
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 * @author: xuBiao
+	 */
+	@RequestMapping(value = { "/export1" })
+	public void export1(KyGyDbModel  model, HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		List<KyGyDbModel> dataset = kyGyDbService.export(model);
+
+		ArrayList<LinkedHashMap> titleList = new ArrayList<LinkedHashMap>();
+		LinkedHashMap<String, String> titleMap = new LinkedHashMap<String, String>();
+		titleMap.put("title1", "金青醇沉模板改版20190304");
+		
+		LinkedHashMap<String, String> headMap = new LinkedHashMap<String, String>();
+		headMap.put("batchNumber", "批次号");
+		headMap.put("deviceCode", "罐号");
+		headMap.put("deviceName", "罐名");
+		headMap.put("processName", "过程名称");
+		headMap.put("stageName", "阶段名称");
+		headMap.put("productName", "产品名称");
+		
+		headMap.put("paraName", "工艺参数");
+		headMap.put("value", "实际值");
+		headMap.put("unit", "单位");
+		headMap.put("curt", "系统时间");
+		titleList.add(titleMap);
+		titleList.add(headMap);
+
+//		File file = new File("D://ExcelExportDemo/");
+//		if (!file.exists())
+//			file.mkdir();// 创建该文件夹目录
+		OutputStream os = null;
+		Date date = new Date();
+		String  codedFileName  = "数据查询";
+		String excelName = java.net.URLEncoder.encode(codedFileName, "UTF-8");
+		try {
+			// .xlsx格式
+//			os = new FileOutputStream(file.getAbsolutePath() + "/" + date.getTime() + ".xlsx");
+			logger.info("正在导出xlsx...");
+			ExcelUtil.exportExcelTo(titleList, dataset, os,response,excelName);
+			logger.info("导出完成...共" + dataset.size() + "条数据,用时" + (new Date().getTime() - date.getTime()) + "ms");
+			//logger.info("文件路径：" + file.getAbsolutePath() + "/" + date.getTime() + ".xlsx");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			//os.close();
+		}
+
+	
 
 	}
 	

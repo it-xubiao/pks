@@ -73,7 +73,7 @@
         var vue;
 
         //正式环境
-        var way1 = "http://127.0.0.1:8080/pks/selectAll/listAll";
+        var way1 = "http://172.31.1.20:8081/pks/selectAll/listAll";
         //本地
         //var way1 = "http://localhost:8080/lft-kb/kanban/kanban1";
 

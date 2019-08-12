@@ -3,7 +3,7 @@
 	<!-- 定义日志的根目录 -->
     <property name="LOG_HOME" value="logs" />
     <!-- 定义日志文件名称 -->
-    <property name="appName" value="lft-kb"></property>
+    <property name="appName" value="kps"></property>
     <!-- 将日志信息打印到控制台上 -->
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
     <encoder charset ="UTF-8">

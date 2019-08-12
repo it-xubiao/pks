@@ -10,7 +10,7 @@
 <script type="text/javascript" src="<%=basePath%>js/plugins/jquery.js"></script>
 <script type="text/javascript" src="<%=basePath%>layui.js"></script>
 <link rel="stylesheet" href="<%=basePath%>/css/layui.css">
-<title>金青醇沉</title>
+<title>数据查询</title>
 
 </head>
 <body>
@@ -40,14 +40,17 @@
 						placeholder="请输入批号" size="35" autocomplete="off"
 						class="layui-input">
 				</div>
-				<label class="layui-form-label">阶段名称</label>
-				<!-- <div class="layui-input-inline" style="width: 150px;">
-					<input type="stageName" name="stageName" id="stageName"
-						placeholder="请输入阶段名称" size="35" autocomplete="no"
+				
+				<label class="layui-form-label">罐号</label>
+				<div class="layui-input-inline" style="width: 150px;">
+					<input type="deviceCode" name="deviceCode" id="deviceCode"
+						placeholder="请输入罐号" size="35" autocomplete="off"
 						class="layui-input">
-				</div> -->
+				</div>
+				
+				<label class="layui-form-label">阶段名称</label>				
 				<div class="layui-input-inline" style="width: 180px;">
-					<select name="stageName" id="stageName">
+					<select name="stageName" lay-search="">
 						<option value="">请选择</option>
 						<option value="浸膏分配">浸膏分配</option>
 						<option value="浸膏冷藏">浸膏冷藏</option>
@@ -125,7 +128,7 @@
 				</div>
 				<label class="layui-form-label">过程名称</label>
 				<div class="layui-input-inline" style="width: 180px;">
-					<select name="processName" id="processName">
+					<select name="processName" id="processName" lay-search="">
 						<option value="">请选择</option>
 						<option value="金青醇沉">金青醇沉</option>
 						<option value="青蒿碱沉、调酸">青蒿碱沉、调酸</option>
@@ -149,14 +152,125 @@
 					</select>
 				</div>
 				
-				<label class="layui-form-label">中间体名称</label>
+				<label class="layui-form-label">工艺参数</label>
+				<div class="layui-input-inline" style="width: 180px;">
+					<select name="paraName" id="paraName" lay-search="">
+						<option value="">请选择</option>
+						 <option value="升温过程上部温度">升温过程上部温度</option>
+                                    <option value="提取液储罐体积">提取液储罐体积</option>
+                                    <option value="罐内温度">罐内温度</option>
+                                    <option value="真空度">真空度</option>
+                                    <option value="称量罐重量">称量罐重量</option>
+                                    <option value="浓缩真空度">浓缩真空度</option>
+                                    <option value="浸膏体积">浸膏体积</option>
+                                    <option value="出膏流速">出膏流速</option>
+                                    <option value="保温下部温度">保温下部温度</option>
+                                    <option value="罐内真空">罐内真空</option>
+                                    <option value="上清液流量计流速">上清液流量计流速</option>
+                                    <option value="蒸汽压力">蒸汽压力</option>
+                                    <option value="保温过程下部温度">保温过程下部温度</option>
+                                    <option value="升温上部温度">升温上部温度</option>
+                                    <option value="纯化水流量计流速">纯化水流量计流速</option>
+                                    <option value="纯化水预热蒸汽压力">纯化水预热蒸汽压力</option>
+                                    <option value="提取液储罐液位">提取液储罐液位</option>
+                                    <option value="保温过程直通蒸汽阀门压力">保温过程直通蒸汽阀门压力</option>
+                                    <option value="芳香水罐体积累积量">芳香水罐体积累积量</option>
+
+                                    <option value="冷藏温度">冷藏温度</option>
+                                    <option value="浸膏量">浸膏量</option>
+                                    <option value="泵频率">泵频率</option>
+                                    <option value="调碱下部温度">调碱下部温度</option>
+                                    <option value="一效温度">一效温度</option>
+                                    <option value="二效真空度">二效真空度</option>
+                                    <option value="二效温度">二效温度</option>
+                                    <option value="罐下部温度">罐下部温度</option>
+                                    <option value="出液流量计累积量">出液流量计累积量</option>
+                                    <option value="纯化水流速">纯化水流速</option>
+                                    <option value="浓缩温度">浓缩温度</option>
+                                    <option value="称重罐重量">称重罐重量</option>
+                                    <option value="上清液转移流量">上清液转移流量</option>
+                                    <option value="罐重量">罐重量</option>
+                                    <option value="加水温度">加水温度</option>
+                                    <option value="保温过程蒸汽压力">保温过程蒸汽压力</option>
+                                    <option value="醇沉下部温度">醇沉下部温度</option>
+                                    <option value="配料罐浸膏温度">配料罐浸膏温度</option>
+                                    <option value="萃取流速">萃取流速</option>
+
+                                    <option value="升温过程下部温度">升温过程下部温度</option>
+                                    <option value="进液流量计流量">进液流量计流量</option>
+                                    <option value="一效真空度">一效真空度</option>
+                                    <option value="储罐药液量">储罐药液量</option>
+                                    <option value="纯化水累积量">纯化水累积量</option>
+                                    <option value="升温过程蒸汽压力">升温过程蒸汽压力</option>
+                                    <option value="质量流量计相对密度">质量流量计相对密度</option>
+                                    <option value="乙醇流量计累积量">乙醇流量计累积量</option>
+                                    <option value="保温蒸汽压力">保温蒸汽压力</option>
+                                    <option value="加热机组2进煤温度">加热机组2进煤温度</option>
+                                    <option value="升温过程馏出液温度">升温过程馏出液温度</option>
+                                    <option value="上清液储罐体积">上清液储罐体积</option>
+                                    <option value="乙醇流量计流速">乙醇流量计流速</option>
+                                    <option value="升温蒸汽压力">升温蒸汽压力</option>
+                                    <option value="调碱上部温度">调碱上部温度</option>
+                                    <option value="加热机组3进煤温度">加热机组3进煤温度</option>
+                                    <option value="浸膏温度">浸膏温度</option>
+                                    <option value="三效真空度">三效真空度</option>
+                                    <option value="三效温度">三效温度</option>
+
+                                    <option value="罐液位">罐液位</option>
+                                    <option value="温度">温度</option>
+                                    <option value="质量流量计流量">质量流量计流量</option>
+                                    <option value="上清液转移累积量">上清液转移累积量</option>
+                                    <option value="静置上部温度">静置上部温度</option>
+                                    <option value="醇沉上部温度">醇沉上部温度</option>
+                                    <option value="pH值">pH值</option>
+                                    <option value="浸膏密度">浸膏密度</option>
+                                    <option value="温度( 石蜡) ">温度( 石蜡) </option>
+                                    <option value="萃取流量累积">萃取流量累积</option>
+                                    <option value="升温过程直通蒸汽阀门开度">升温过程直通蒸汽阀门开度</option>
+                                    <option value="出液流量计流速">出液流量计流速</option>
+                                    <option value="密度计密度">密度计密度</option>
+                                    <option value="升温下部温度">升温下部温度</option>
+                                    <option value="纯化水流量计累积量">纯化水流量计累积量</option>
+                                    <option value="保温过程直通蒸汽阀门开度">保温过程直通蒸汽阀门开度</option>
+                                    <option value="加热机组1进煤温度">加热机组1进煤温度</option>
+                                    <option value="药液重量">药液重量</option>
+                                    <option value="挥发油收集量">挥发油收集量</option>
+
+                                    <option value="温度( 调酸)">温度( 调酸) </option>
+                                    <option value="罐体积">罐体积</option>
+                                    <option value="升温过程直通蒸汽阀门压力">升温过程直通蒸汽阀门压力</option>
+                                    <option value="罐上部温度">罐上部温度</option>
+                                    <option value="密度">密度</option>
+                                    <option value="保温过程上部温度">保温过程上部温度</option>
+                                    <option value="上清液暂存罐体积">上清液暂存罐体积</option>
+                                    <option value="静置下部温度">静置下部温度</option>
+                                    <option value="保温上部温度">保温上部温度</option>
+                                    <option value="保温过程馏出液温度">保温过程馏出液温度</option>
+                                    <option value="萃取前罐( 重量) ">萃取前罐( 重量) </option>
+                                    <option value="投料上部温度">投料上部温度</option>
+                                    <option value="投料下部温度">投料下部温度</option>
+                                    <option value="加热机组4进煤温度">加热机组4进煤温度</option>
+                                    <option value="温度( 微沸1小时) ">温度( 微沸1小时) </option>
+					</select>
+				</div>
+				
+				<label class="layui-form-label">排序方式</label>
+				<div class="layui-input-inline" style="width: 180px;">
+					<select name="sort" id="sort">
+						<option value="asc">升序</option>
+						<option value="desc">降序 </option>
+						
+					</select>
+				</div>
+				
+				<!-- <label class="layui-form-label">中间体名称</label>
 				<div class="layui-input-inline" style="width: 150px;">
 					<input type="paraName" name="paraName" id="paraName"
 						placeholder="请输中间体名称" size="35" autocomplete="off"
 						class="layui-input">
-				</div>
+				</div> -->
 
-				<div class="layui-inline">
+				<!-- <div class="layui-inline">
 					<label class="layui-form-label">开始时间</label>
 					<div class="layui-input-inline">
 						<input type="text" class="layui-input" name="start" id="start"
@@ -169,7 +283,7 @@
 						<input type="text" class="layui-input" name="end" id="end"
 							lay-verify="required" placeholder="yyyy-MM-dd HH:mm:ss">
 					</div>
-				</div>
+				</div> -->
 
 				<div class="layui-inline">
 					<div class="layui-input-block">
@@ -184,7 +298,8 @@
 	</div>
 	<!-- 数据展示 -->
 	<table id="data_list_table" lay-filter="test" lay-data="{id: 'idTest'}"></table>
-
+	
+	
 	<script>
 		//var table
 		layui.use([ 'form', 'layedit', 'laydate', 'table', 'laypage' ],
@@ -224,6 +339,7 @@
 							start.config.max.month = date.month - 1;
 						}
 					});
+					formSelects.render('selectId');
 
 					//初始赋值
 					laydate.render({
@@ -238,6 +354,17 @@
 						value : time1,
 						isInitValue : true
 					});
+					
+					 layui.formSelects.filter('example4', function(id, inputVal, val, isDisabled){
+				            if(
+				                PY.fullPY(val.name).toLowerCase().indexOf(inputVal) != -1 ||    //拼音全拼是否包含
+				                PY.fullPY(val.name, true).indexOf(inputVal) != -1 ||            //拼音简拼是否包含
+				                val.name.indexOf(inputVal) != -1                                //文本是否包含
+				            ){
+				                return false;
+				            }
+				            return true;
+				        });
 
 					//第一个实例
 					table.render({
@@ -272,8 +399,11 @@
 							stageName : $("#stageName").val(),
 							processName : $("#processName").val(),
 							paraName : $("#paraName").val(),
-							start : $("#start").val(),
-							end : $("#end").val()
+							deviceCode : $("#deviceCode").val()
+							,sort : $("#sort").val()
+							
+							/* start : $("#start").val(),
+							end : $("#end").val() */
 
 						},
 						id : 'idTest',
@@ -306,7 +436,7 @@
 							width : 190,
 						}, {
 							field : 'paraName',
-							title : '中间体名称',
+							title : '工艺参数',
 							width : 150,
 						}, {
 							field : 'value',
@@ -320,6 +450,7 @@
 							field : 'curt',
 							title : '系统时间',
 							width : 190
+							, sort: true
 						} ] ],
 						done : function(res, curr, count) {
 							exportData = res.data;
@@ -328,7 +459,7 @@
 				});
 		function downloadfile() {
 			window
-					.open('http://127.0.0.1:8080/pks/selectAll/export?batchNumber='
+					.open('http://172.31.1.20:8081/pks/selectAll/export1?batchNumber='
 							+ $("#batchNumber").val()
 							+ '&stageName='
 							+ $("#stageName").val()
@@ -336,8 +467,9 @@
 							+ $("#processName").val()
 							+ '&paraName='
 							+ $("#paraName").val()
-							+ '&start='
-							+ $("#start").val() + '&end=' + $("#end").val());
+							+ '&deviceCode='
+							+ $("#deviceCode").val() );
+			
 		}
 
 		function submits() {
@@ -347,8 +479,10 @@
 					stageName : $("#stageName").val(),
 					processName : $("#processName").val(),
 					paraName : $("#paraName").val(),
-					start : $("#start").val(),
-					end : $("#end").val()
+					deviceCode : $("#deviceCode").val(),
+					sort : $("#sort").val()
+					/* start : $("#start").val(),
+					end : $("#end").val() */
 				},
 				page : {
 					curr : 1,
